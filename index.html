@@ -819,7 +819,6 @@
     <div class="container">
         <header>
             <button class="back-btn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
                 뽀모도로 타이머
             </button>
             <button class="close-btn">닫기</button>
@@ -1079,10 +1078,13 @@
                 };
                 
                 const now = ctx.currentTime;
-                // Pleasant cascading chime sound: C5 (523.25Hz), E5 (659.25Hz), G5 (783.99Hz)
-                playTone(523.25, now, 0.4);
-                playTone(659.25, now + 0.15, 0.5);
-                playTone(783.99, now + 0.3, 0.6);
+                // Beautiful cascading chime sound (longer notification melody):
+                // C5 (523.25Hz) -> E5 (659.25Hz) -> G5 (783.99Hz) -> C6 (1046.50Hz) -> E6 (1318.51Hz)
+                playTone(523.25, now, 0.6);
+                playTone(659.25, now + 0.2, 0.6);
+                playTone(783.99, now + 0.4, 0.7);
+                playTone(1046.50, now + 0.6, 0.9);
+                playTone(1318.51, now + 0.8, 1.2);
             } catch (e) {
                 console.warn('Play sound failed:', e);
             }
