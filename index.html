@@ -1365,6 +1365,24 @@
         startBtn.onclick = toggleTimer;
         resetBtn.onclick = reset;
 
+        document.querySelector('.close-btn').onclick = () => {
+            // Send close/back message to parent window if running inside an iframe
+            try {
+                window.parent.postMessage({ type: 'close' }, '*');
+                window.parent.postMessage('close', '*');
+            } catch (e) {
+                console.error(e);
+            }
+            // Attempt to close the window/tab directly
+            try {
+                window.close();
+            } catch (e) {
+                console.error(e);
+            }
+            // Navigate to the previously requested URL
+            window.location.href = 'https://claix-toolkit-xzrp.vercel.app/';
+        };
+
         mainCard.classList.add('mode-focus');
         update();
     </script>
